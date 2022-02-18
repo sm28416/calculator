@@ -119,4 +119,12 @@ public class Operators {
         num1 = res;
         his.append(num1 + "  ");
     }
+    public double Exp(double num, JTextField dis){
+        num = new EditValue().Num(num, dis);
+        return num * num;
+    }
+    public double Sqrt(double num, JTextField dis){
+        num = new EditValue().Num(num, dis);
+        return Math.sqrt(num);
+    }
 }

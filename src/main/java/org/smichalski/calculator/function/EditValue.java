@@ -32,8 +32,8 @@ public class EditValue {
             display.setText(display.getText().concat(String.valueOf(txt)));
         }
     }
-    public double num(double num1, JTextField dis){
-        return num1 = Double.parseDouble(dis.getText());
+    public double Num(double num, JTextField dis){
+        return num = Double.parseDouble(dis.getText());
     }
 
 }

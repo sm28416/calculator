@@ -1,5 +1,7 @@
 package org.smichalski.calculator.component;
 
+import org.smichalski.calculator.Main;
+import org.smichalski.calculator.frame.MainFrame;
 import org.smichalski.calculator.function.EditValue;
 import org.smichalski.calculator.function.Operators;
 
@@ -13,7 +15,7 @@ public class Pad extends JPanel implements ActionListener{
     JButton addButton, subButton, mulButton, divButton, equButton, decButton, sqrButton, expButton, modButton;
     JButton clrButton, delButton, oButton;
     JTextField display;
-    JTextArea history;
+    JTextArea his;
     char operator = ' ';
     double  num1 = 0, num2 = 0, result;
     boolean numAc = false;
@@ -25,11 +27,11 @@ public class Pad extends JPanel implements ActionListener{
 
         this.setLayout(new GridBagLayout());
 
-        history = new JTextArea();
-        history.setEditable(false);
-        history.setFont(new Font("Serif", Font.BOLD, 15));
+        his = new JTextArea();
+        his.setEditable(false);
+        his.setFont(new Font("Serif", Font.BOLD, 15));
 
-        JScrollPane js = new JScrollPane(history);
+        JScrollPane js = new JScrollPane(his);
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.gridx = 0;
@@ -304,113 +306,108 @@ public class Pad extends JPanel implements ActionListener{
             editValue.Delete(display);
         }
         if(e.getSource() == clrButton){
-          editValue.Clear(num1, num2, result, display, history, operator, numAc);
+          editValue.Clear(num1, num2, result, display, his, operator, numAc);
         }
         if(e.getSource() == addButton){
             if(!numAc){
-                num1 = editValue.num(num1, display);
-                op.Plus(display, history, num1, operator);
+                num1 = editValue.Num(num1, display);
+                op.Plus(display, his, num1, operator);
                 operator = '+';
                 numAc = true;
             }
             else {
-                op.Plus(display, history, num1, operator);
+                op.Plus(display, his, num1, operator);
                 operator = '+';
             }
 
         }
         if(e.getSource() == subButton){
             if(!numAc){
-                num1 = editValue.num(num1, display);
-                op.Sub(display, history, num1, operator);
+                num1 = editValue.Num(num1, display);
+                op.Sub(display, his, num1, operator);
                 operator = '-';
                 numAc = true;
             }
             else {
-                op.Sub(display, history, num1, operator);
+                op.Sub(display, his, num1, operator);
                 operator = '-';
             }
         }
         if(e.getSource() == mulButton){
             if(!numAc){
-                num1 = editValue.num(num1, display);
-                op.Mul(display, history, num1, operator);
+                num1 = editValue.Num(num1, display);
+                op.Mul(display, his, num1, operator);
                 operator = '*';
                 numAc = true;
             }
             else {
-                op.Mul(display, history, num1, operator);
+                op.Mul(display, his, num1, operator);
                 operator = '*';
             }
         }
         if(e.getSource() == divButton){
             if(!numAc){
-                num1 = editValue.num(num1, display);
-                op.Div(display, history, num1, operator);
+                num1 = editValue.Num(num1, display);
+                op.Div(display, his, num1, operator);
                 operator = '/';
                 numAc = true;
             }else {
-                op.Div(display, history, num1, operator);
+                op.Div(display, his, num1, operator);
                 operator = '/';
             }
         }
         if(e.getSource() == modButton){
             if(!numAc){
-                num1 = editValue.num(num1, display);
-                op.Mod(display, history, num1, operator);
+                num1 = editValue.Num(num1, display);
+                op.Mod(display, his, num1, operator);
                 operator = '%';
                 numAc = true;
             }
             else {
-                op.Mod(display, history, num1, operator);
+                op.Mod(display, his, num1, operator);
                 operator = '%';
             }
         }
-//        if(e.getSource() == sqrButton){
-//            if(!numAc){
-//                operator = '√';
-//                num1 = editValue.num(num1, display);
-//                num1 = Math.sqrt(num1);
-//                display.setText("");
-//                history.setText(history.getText().concat(num1 + "  "));
-//                numAc = true;
-//            }
-//            else {
-//                num2 = editValue.num(num2, display);
-//                if(num2 != 0){
-//                    num2 = Math.sqrt(num2);
-//                    display.setText("");
-//                    history.setText(history.getText().concat(" " + num2 + " "));
-//                }
-//            }
-//        }
-//        if(e.getSource() == expButton){
-//            if(!numAc){
-//                operator = '^';
-//                num1 = editValue.num(num1, display);
-//                if(num1 != 0){
-//                    num1 = num1 * num1;
-//                    display.setText("");
-//                    history.setText(num1 + "  ");
-//                    numAc = true;
-//                }
-//            }
-//            else {
-//                num2 = editValue.num(num2, display);
-//                if(num2 != 0){
-//                    num2 = num2 * num2;
-//                    display.setText("");
-//                    history.setText(history.getText().concat(" " + num2 + " "));
-//                }
-//            }
-//        }
+        if(e.getSource() == sqrButton){
+            if(!numAc){
+                operator = 's';
+                num1 = op.Sqrt(num1, display);
+                his.setText(his.getText().concat(num1 + "  "));
+                numAc = true;
+                display.setText("");
+            }
+            else {
+                num2 = op.Sqrt(num2, display);
+                op.Equ(display, his, num1, num2, result, operator);
+                num2 = 0;
+                numAc = false;
+            }
+        }
+        if(e.getSource() == expButton){
+            if(!numAc){
+                operator = 's';
+                num1 = op.Exp(num1, display);
+                his.setText(his.getText().concat(num1 + "  "));
+                numAc = true;
+                display.setText("");
+            }
+            else {
+                num2 = op.Exp(num2, display);
+                op.Equ(display, his, num1, num2, result, operator);
+                num2 = 0;
+                numAc = false;
+            }
+        }
         if(e.getSource() == equButton){
             if(num2 == 0){
-                num2 = editValue.num(num2, display);
+                num2 = editValue.Num(num2, display);
             }
-            op.Equ(display, history, num1, num2, result, operator);
+            op.Equ(display, his, num1, num2, result, operator);
             num2 = 0;
             numAc = false;
+        }
+        if(e.getSource() == oButton){
+
         }
     }
 }
