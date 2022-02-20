@@ -24,7 +24,6 @@ public class Pad extends JPanel implements ActionListener{
     EditValue editValue = new EditValue();
     Operators op = new Operators();
     public Pad(){
-
         this.setLayout(new GridBagLayout());
 
         his = new JTextArea();
@@ -407,7 +406,9 @@ public class Pad extends JPanel implements ActionListener{
             numAc = false;
         }
         if(e.getSource() == oButton){
-
+            About about = new About();
+            about.setLocationRelativeTo(null);
+            about.setVisible(true);
         }
     }
 }

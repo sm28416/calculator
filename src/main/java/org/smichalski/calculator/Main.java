@@ -1,5 +1,7 @@
 package org.smichalski.calculator;
 
+import org.smichalski.calculator.component.About;
+import org.smichalski.calculator.component.Pad;
 import org.smichalski.calculator.frame.MainFrame;
 
 import javax.swing.*;
