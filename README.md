@@ -1,4 +1,5 @@
 # Kalkulator
+Projekt wykonany w IntelliJ IDEA Community Edition 2021.2.3
 
 Kalkulator umożliwijący wykonanie łatwych operacji matematycznych na dwóch liczbach. 
 
