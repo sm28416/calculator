@@ -28,4 +28,4 @@ Następnie w wierszu poleceń(cmd) należy odnaleźć folder lokalny z plikiem .
 Kiedy już jesteśmy w foledzrze z jarem należy użyć komedy java -jar JavaCalculator.jar, aby program się uruchomił. Należy pamiętać że na naszym urządzeniu musimy mieć zainstalowaną jave inaczej program się nie odpali.
 
 ![image](https://user-images.githubusercontent.com/98836069/154844621-e2c90485-3fec-43b1-a8c6-4e4b8d285216.png)
-(Przykład)
+
